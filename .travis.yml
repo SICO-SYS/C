@@ -1,0 +1,13 @@
+language: go
+go:
+- 1.8.x
+services:
+- mongodb
+before_install:
+- wget https://s3.amazonaws.com/sico-ops/config.travis.json -O controller/config.json
+install:
+- go get -t ./...
+script: go test -test.bench=".*" -v ./controller/...
+notifications:
+  slack:
+    secure: CiLlQQtLfOFy+l15oA3VzUhgEB2rlLvPfobCpJ/3FRlwm53AqlxHOx7oHhXw06TTvMwmxM0cNQUQFNa/1P+wxcye66Pc3qASPoew3iGvN14VOiBnE3CM3VMv+Jv6AWRdnCli5AGRz4XzG/mp9ii2wikrybrO+cd0+QC67b0k0cOF58ylmcF9BbNQzjNMquIHj62OCFx7SORWsiILAjSheNcdRRksL8E7CmMnlp4oR4S1chb2q6hwJgBdpum4Rrq6fYjYxEiggTz8IolJxD9dmzAfYfJdJ133Tg2biOLVfyVq7br9SNEGHueGlaTkkw3Kf/Vcman4vY6OyFPzAHsBkRsQTNwQVjwP5Uv7oxL8n9dRY49k0uEgP4a7nOD+J7Vn8rnsn6BCIJrduyoNwbfRro1D4X+dXnCBWDv9ueLPaM2FsmqpUKI5uvvzOGkeN/Vpldl1yQjhHcpVMUPeSfsKcO18DSCf7lrz2mIESdw1M0MEYjLX5JtR/O94iXsuEDvNGoB6s2FQUlUYdv7Pb3OFP36yUX6Nt3D0mqxagge11mLQHXa2Slg2q0K4zXJ/3zD1VsYTE2qDg0YrWVFiva1a50Bq9ldvFKgNs8vl2ISYGT1I3YNgMtNexg6bumkwXN2qOT2EXVlOkGpTrKRobt2E1vgstce4mmroCal7uqO55gE=
